@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #path ('urls address' , 'view')
     path('', include('website.urls')),
+    path('blog/',include ('blog.urls'))
     
 ]
 
