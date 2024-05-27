@@ -12,7 +12,10 @@ class PostAdmin(admin.ModelAdmin):
     # fields = ["title",]
     list_display = ["title" , "count_views" , "status" ,]
     list_filter = ('status',)
-    ordering = ['-created_date']
+
+    # created ordering in medels.py and in class meta
+    # ordering = ['-created_date']
+    
     search_fields = ['title','content']
 ##first way
 admin.site.register(Post,PostAdmin)
