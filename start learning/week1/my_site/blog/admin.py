@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Post
+from blog.models import Post,Category
 
 # Register your models here.
 
@@ -12,11 +12,10 @@ class PostAdmin(admin.ModelAdmin):
     # fields = ["title",]
     list_display = ["title" ,"author", "count_views" , "status" ,]
     list_filter = ('status','author')
-
     # created ordering in medels.py and in class meta
     # ordering = ['-created_date']
-    
     search_fields = ['title','content']
 ##first way
+admin.site.register(Category)
 admin.site.register(Post,PostAdmin)
 
