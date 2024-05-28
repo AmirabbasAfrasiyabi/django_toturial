@@ -7,7 +7,12 @@
 </head>
 <body>
 
-    {{Posts}}
+<p>{{Posts.title}}</p>
+
+
+
+{% comment %} solotion2 {% endcomment %}
+    {% comment %} {{Posts}}
     {% for Post in Posts %}
 
         {% if Post.status == 1 %}
@@ -16,7 +21,7 @@
         <h6>{{Post.published_date}}</h6>
         {% endif %}
         
-    {% endfor %}
+    {% endfor %} {% endcomment %}
 
 </body>
 </html>
