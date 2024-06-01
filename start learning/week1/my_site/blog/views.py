@@ -12,7 +12,15 @@ def blog_single (request,pid):
     context = {'post':post }    
     return render (request , 'blog/blog-single.html',context)
 
-def test (request,pid):
-    post = get_object_or_404(Post,pk=pid)
-    context = {'post':post}    
-    return render (request ,'test.html',context)
+# def test (request.pid):
+    # post = get_object_or_404(Post,pk=pid)
+    # context = {'post':post}    
+    # return render (request ,'test.html',context)
+
+
+def test (request):
+    # post = get_object_or_404(Post,pk=pid)
+    # context = {'post':post}    
+    # return render (request ,'test.html',context)
+
+    return render (request ,'test.html')

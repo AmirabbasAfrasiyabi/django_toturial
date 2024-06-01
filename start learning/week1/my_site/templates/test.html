@@ -1,3 +1,4 @@
+{% load blog_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,10 +8,11 @@
 </head>
 <body>
 
+{% comment %} soulition 2 {% endcomment %}
+{% comment %} <p>{{post.title}}</p> {% endcomment %}
 
-<p>{{post.title}}</p>
 
-
+{% comment %} soloution 1 : use if and else in html {% endcomment %}
 {% comment %} solotion2 {% endcomment %}
     {% comment %} {{Posts}}
     {% for Post in Posts %}
@@ -22,6 +24,14 @@
         {% endif %}
         
     {% endfor %} {% endcomment %}
+
+
+{% comment %} soloution 3 -> {% endcomment %}
+    <h1>testing page</h1>
+    <p> test {% posts as totalposts %}</p>
+    {% for post in totalposts %}
+       <p> {{post}} </p>
+    {% endfor %}
 
 </body>
 </html>
