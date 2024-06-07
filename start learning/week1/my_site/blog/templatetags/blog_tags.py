@@ -12,3 +12,11 @@ def function():
 def function():
     posts = Post.objects.filter(status=1)
     return posts
+
+@register.inclusion_tag('blog/popular-posts.html')
+def latestposts():
+    posts = Post.objects.filter(status=1).order_by('published_date')[:2]
+    return {'posts': posts} 
+
+
+
