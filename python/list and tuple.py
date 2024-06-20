@@ -13,13 +13,15 @@ L1.append("abbas")
 print(L1)
 L2.insert(1,"abbas")
 print(L2)
+print(len(L1))
+print(len(L2))
 
 #slice
 print(L1 [2:])
+print(L2[:5])
 #tuple
 t1 = (1,2,3,4,5,6)
 print(type(t1))
 print(t1)
-
 tuple_t = tuple(L1)
 print(tuple_t)

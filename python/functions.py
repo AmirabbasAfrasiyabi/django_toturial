@@ -2,7 +2,7 @@ def print_hello_world():
     for i in range(3):
         print("Hello World")
 
-print_hello_world()
+print(print_hello_world())
 
 def aca():
     print("done")
