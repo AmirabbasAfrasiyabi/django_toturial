@@ -8,7 +8,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <!-- Favicon-->
-    <link rel="shortcut icon" href="{% static 'img/fav.png" />
+    <link rel="shortcut icon" href="{% static 'img/fav.png' %}" />
     <!-- Author Meta -->
     <meta name="author" content="colorlib" />
     <!-- Meta Description -->
@@ -73,8 +73,8 @@
               <li class="menu-has-children">
                 <a href="">Blog</a>
                 <ul>
-                  <li><a href="blog-home.html">Blog Home</a></li>
-                  <li><a href="blog-single.html">Blog Single</a></li>
+                  <li><a href="{% url 'blog:index' %}">Blog Home</a></li>
+                  <li><a href="{% url 'blog:single' %}">Blog Single</a></li>
                 </ul>
               </li>
               <li class="menu-has-children">
