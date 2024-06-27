@@ -8,3 +8,10 @@ class Contact(models.Model):
     massage = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created_date']
+        verbose_name = 'کانتکت'
+        verbose_name_plural = ' کانتکت ها'
+    def __str__(self):
+        return" {}" .format(self.name )
