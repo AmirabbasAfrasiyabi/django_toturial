@@ -6,7 +6,7 @@
     <title>Test</title>
 </head>
 <body>
-    {{posts}}
+    {% comment %} {{posts}} {% endcomment %}
     {% for post in posts %}
         {% if post.status == 1 %}
         <h1>{{post.title}}</h1>
