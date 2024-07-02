@@ -1,6 +1,4 @@
-{% extends "base.html" %} 
-{% load static %}
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block content %}
 
 <!-- start banner Area -->
 <section class="banner-area relative blog-home-banner" id="home">
@@ -116,7 +114,8 @@
                 <span class="lnr lnr-calendar-full"></span>
               </p>
               <p class="view col-lg-12 col-md-12 col-6">
-                <a href="#">{{post.counted_views}}views</a> <span class="lnr lnr-eye"></span>
+                <a href="#">{{post.counted_views}} views</a>
+                <span class="lnr lnr-eye"></span>
               </p>
               <p class="comments col-lg-12 col-md-12 col-6">
                 <a href="#">06 Comments</a> <span class="lnr lnr-bubble"></span>
@@ -125,15 +124,17 @@
           </div>
           <div class="col-lg-9 col-md-9">
             <div class="feature-img">
-              <img class="img-fluid" src="{% static 'img/blog/feature-img1.jpg' %}" alt="" />
+              <img
+                class="img-fluid"
+                src="{% static 'img/blog/feature-img1.jpg' %}"
+                alt=""
+              />
             </div>
-            <a class="posts-title" href='#'>
+            <a class="posts-title" href="/blog/{{post.id}}/">
               <h3>{{post.title}}</h3>
             </a>
-            <p class="excert">
-              {{post.content}}
-            </p>
-            <a href="#" class="primary-btn">View More</a>
+            <p class="excert">{{post.content}}</p>
+            <a href="/blog/{{post.id}}/" class="primary-btn">View More</a>
           </div>
         </div>
         {% endfor %}
@@ -196,9 +197,9 @@
               </li>
             </ul>
             <p>
-              Boot camps have its supporters andit sdetractors. Some people do
-              not understand why you should have to spend money on boot camp
-              when you can get. Boot camps have itssuppor ters andits
+              Boot camps have its supporters and it has its detractors. Some
+              people do not understand why you should have to spend money on
+              boot camp when you can get. Boot camps have its supporters and its
               detractors.
             </p>
           </div>
@@ -207,7 +208,11 @@
             <div class="popular-post-list">
               <div class="single-post-list d-flex flex-row align-items-center">
                 <div class="thumb">
-                  <img class="img-fluid" src="{% static 'img/blog/pp1.jpg' %}" alt="" />
+                  <img
+                    class="img-fluid"
+                    src="{% static 'img/blog/pp1.jpg' %}"
+                    alt=""
+                  />
                 </div>
                 <div class="details">
                   <a href="blog-single.html"
@@ -218,7 +223,11 @@
               </div>
               <div class="single-post-list d-flex flex-row align-items-center">
                 <div class="thumb">
-                  <img class="img-fluid" src="{% static 'img/blog/pp2.jpg' %}" alt="" />
+                  <img
+                    class="img-fluid"
+                    src="{% static 'img/blog/pp2.jpg' %}"
+                    alt=""
+                  />
                 </div>
                 <div class="details">
                   <a href="blog-single.html"><h6>The Amazing Hubble</h6></a>
@@ -227,7 +236,11 @@
               </div>
               <div class="single-post-list d-flex flex-row align-items-center">
                 <div class="thumb">
-                  <img class="img-fluid" src="{% static 'img/blog/pp3.jpg' %}" alt="" />
+                  <img
+                    class="img-fluid"
+                    src="{% static 'img/blog/pp3.jpg' %}"
+                    alt=""
+                  />
                 </div>
                 <div class="details">
                   <a href="blog-single.html"><h6>Astronomy Or Astrology</h6></a>
@@ -236,7 +249,11 @@
               </div>
               <div class="single-post-list d-flex flex-row align-items-center">
                 <div class="thumb">
-                  <img class="img-fluid" src="{% static 'img/blog/pp4.jpg' %}" alt="" />
+                  <img
+                    class="img-fluid"
+                    src="{% static 'img/blog/pp4.jpg' %}"
+                    alt=""
+                  />
                 </div>
                 <div class="details">
                   <a href="blog-single.html"><h6>Asteroids telescope</h6></a>
@@ -246,12 +263,16 @@
             </div>
           </div>
           <div class="single-sidebar-widget ads-widget">
-            <a href="#"
-              ><img class="img-fluid" src="{% static 'img/blog/ads-banner.jpg' %}" alt=""
-            /></a>
+            <a href="#">
+              <img
+                class="img-fluid"
+                src="{% static 'img/blog/ads-banner.jpg' %}"
+                alt=""
+              />
+            </a>
           </div>
           <div class="single-sidebar-widget post-category-widget">
-            <h4 class="category-title">Post Catgories</h4>
+            <h4 class="category-title">Post Categories</h4>
             <ul class="cat-list">
               <li>
                 <a href="#" class="d-flex justify-content-between">
@@ -321,7 +342,7 @@
                   />
                 </div>
               </div>
-              <a href="#" class="bbtns">Subcribe</a>
+              <a href="#" class="bbtns">Subscribe</a>
             </div>
             <p class="text-bottom">You can unsubscribe at any time</p>
           </div>
