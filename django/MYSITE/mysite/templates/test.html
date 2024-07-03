@@ -7,9 +7,11 @@
     <title>Test</title>
 </head>
 <body>
-    <h1>Hi my name is Amirabbas</h1>
     <h1>Testing Page</h1>
-    <p> test: {%  totalpost as tp %} </p>
+    <p> test: {%  posts as totalposts %} </p>
+    {% for post in totalposts %}
+        <p>{{post.content|snippet:50}}</p>
+    {% endfor %}
     
 </body>
 </html>
