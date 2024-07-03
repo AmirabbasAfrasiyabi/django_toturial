@@ -1,8 +1,9 @@
 from django.urls import path
-from blog.views import blog_view, blog_single
+from blog.views import blog_view, blog_single , blog_test
 
 app_name = 'blog'
 urlpatterns = [
     path('', blog_view, name='index'),
     path('/<int:pid>/', blog_single, name='single'),
+    path('/test', blog_test, name='test'),
 ]

@@ -1,3 +1,4 @@
+{% load blog_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,19 +7,10 @@
     <title>Test</title>
 </head>
 <body>
-    
-    <h1>{{post.title}}</h1>
-
-    {% comment %} {% for post in posts %}
-        {% if post.status == 1 %}
-        <h1>{{post.title}}</h1>
-        <p>{{post.content}}</p>
-        <small>{{post.published_date}}</small>
-        {% else %}
-        <p> not published yet </p>
-        {% endif %}post, 'status
-    {% endfor %} {% endcomment %}
-
+    <h1>Hi my name is Amirabbas</h1>
+    <h1>Testing Page</h1>
+    <p> test: {%  totalpost as tp %} </p>
     
 </body>
 </html>
+
