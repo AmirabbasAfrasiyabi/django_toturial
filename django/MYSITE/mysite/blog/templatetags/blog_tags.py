@@ -24,7 +24,7 @@ def latestposts(arg=3):
 
 @ register.inclusion_tag('blog/blog-postCategory.html')
 def postcategories():
-    posts = Post.objects.filter(status=1)
+    posts = Post.objects.filter(status=1).count()
     categories = category.objects.all()
     cat_dict = {}
     for name in categories:
