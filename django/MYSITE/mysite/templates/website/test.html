@@ -1,0 +1,29 @@
+{% load blog_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+
+   <form action="{% url 'website:test' %}" method="post">
+        {% csrf_token  %}
+        <lable>name:</lable>
+        <input name="name" type="text"><br>
+
+        <lable>email:</lable>
+        <input name="email" type="email"><br>
+
+        <lable>subject:</lable>
+        <input name="subject" type="text"><br>
+
+        <lable>massage:</lable>
+        <input name="massage" type="text"><br>
+        <button type="submit">submit</button>
+   </form>
+
+</body>
+</html>
+
