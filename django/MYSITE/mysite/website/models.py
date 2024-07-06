@@ -15,3 +15,9 @@ class Contact(models.Model):
         verbose_name_plural = ' کانتکت ها'
     def __str__(self):
         return" {}" .format(self.name )
+
+class NewsLetter(models.Model):
+    email = models.EmailField(max_length=225)
+
+    def __str__(self):
+        return self.email
