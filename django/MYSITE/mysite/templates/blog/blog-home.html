@@ -104,8 +104,9 @@
           <div class="col-lg-3 col-md-3 meta-details">
             <ul class="tags">
               {% for cat in post.category.all %}
-                <li><a href=""{% url 'blog:category' cat_name=cat.name %}>{{ cat.name }}</a></li> 
+                <li><a href="{% url 'blog:category' cat_name=cat.name %}">{{ cat.name }}</a> {% if not forloop.last %},{% endif %}</li>
               {% endfor %}
+
               {% comment %} {{post.category.all}} {% endcomment %}
               
             </ul>
@@ -172,9 +173,9 @@
         <div class="widget-wrap">
           {% include "blog/blog-search.html" %}
           {% include "blog/blog-writter.html" %}
+          {% postcategories %}
           {% include "blog/blog-ads.html" %}
-          {% include "blog/blog-news.html" %}
-          {% include "blog/blog-tags.html" %}
+
         </div>
       </div>
     </div>
