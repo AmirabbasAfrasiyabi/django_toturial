@@ -36,6 +36,7 @@ def blog_category(request, cat_name):
     return render(request, 'blog/blog-home.html', context)
 
 def blog_search(request):
+    print(request)
     posts = Post.objects.filter(status=1)
     query = request.GET.get('s')
     if query:
