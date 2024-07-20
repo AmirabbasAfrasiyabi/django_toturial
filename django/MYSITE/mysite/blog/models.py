@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 class category(models.Model):
     name = models.CharField(max_length=255)
@@ -25,3 +26,7 @@ class Post(models.Model):
         verbose_name_plural = ' پست ها'
     def __str__(self):
         return" {}" .format(self.title ,)
+    
+    def get_absolute_url(self):
+        return reverse("blog:single", kwargs={"pid": self.id})
+    
