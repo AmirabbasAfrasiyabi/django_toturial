@@ -1,6 +1,7 @@
+# views.py
 from django.shortcuts import render, get_object_or_404
 from blog.models import Post
-from django.core.paginator import Paginator , PageNotAnInteger , EmptyPage
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 def blog_view(request, cat_name=None, author_username=None):
     posts = Post.objects.filter(status=1)
@@ -8,7 +9,7 @@ def blog_view(request, cat_name=None, author_username=None):
         posts = posts.filter(category__name=cat_name)
     if author_username:
         posts = posts.filter(author__username=author_username)
-    posts = Paginator(posts,3)
+    posts = Paginator(posts, 3)
     try:
         page_number = request.GET.get('page')
         posts = posts.get_page(page_number)
@@ -20,18 +21,25 @@ def blog_view(request, cat_name=None, author_username=None):
     return render(request, 'blog/blog-home.html', context)
 
 
+def latest_blog_posts(request):
+    latest_posts = Post.objects.filter(status=1).order_by('-published_date')
+    posts = Paginator(latest_posts, 3)  # Adjust the number here to control posts per page
+    try:
+        page_number = request.GET.get('page')
+        posts = posts.get_page(page_number)
+    except PageNotAnInteger:
+        posts = posts.get_page(1)
+    except EmptyPage:
+        posts = posts.get_page(1)
+    context = {'posts': posts}
+    return render(request, 'blog/latest_blog_posts.html', context)
+
+
 def blog_single(request, pid):
     posts = Post.objects.filter(status=1)
     post = get_object_or_404(posts, pk=pid)
     context = {'post': post}
     return render(request, 'blog/blog-single.html', context)
-
-def latest_blog_posts(request , pid):
-    latest_posts = Post.objects.filter(status=1).order_by('-published_date')[:6]
-    latest_post = get_object_or_404(latest_posts, pk=pid)
-    context = {'latest_post': latest_posts}
-    return render(request, 'blog/latest_blog_posts.html', context)
-
 
 def blog_test(request):
     return render(request, 'test.html')

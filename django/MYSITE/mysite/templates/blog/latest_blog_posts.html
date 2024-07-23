@@ -1,15 +1,16 @@
+<!-- latest-blog-posts.html -->
 {% load static %}
-<div class="row">
+<div class="row d-flex justify-content-center">
     {% for post in posts %}
-    <div class="single-recent-blog-post item">
+    <div class="single-recent-blog-post item col-lg-4 col-md-4">
         <div class="thumb">
-            <img class="img-fluid" src="{{ post.image.url }}" alt="{{ post.title }}" />
+            <img class="img-fluid" src="{{ post.image.url }}" alt="{{ post.title }}" style="width: 100%; height: auto;" />
         </div>
         <div class="details">
             <div class="tags">
                 <ul>
                     {% for category in post.category.all %}
-                    <li><a href="#">{{ category.name }}</a></li>
+                    <li><a href="">{{ category.name }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
@@ -20,3 +21,4 @@
     </div>
     {% endfor %}
 </div>
+
