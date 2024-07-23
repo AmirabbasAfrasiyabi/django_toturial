@@ -20,6 +20,11 @@ def latestposts():
     posts = Post.objects.filter(status=1).order_by('published_date')
     return{'posts': posts}
 
+@register.inclusion_tag('blog/latest_blog_posts.html')
+def latest_posts():
+    posts = Post.objects.filter(status=1).order_by('-published_date')[:6]
+    return {'posts': posts}
+
 @ register.inclusion_tag('blog/blog-post-category.html')
 def postcategories():
     posts = Post.objects.filter(status=1)

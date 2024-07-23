@@ -26,6 +26,13 @@ def blog_single(request, pid):
     context = {'post': post}
     return render(request, 'blog/blog-single.html', context)
 
+def latest_blog_posts(request , pid):
+    latest_posts = Post.objects.filter(status=1).order_by('-published_date')[:6]
+    latest_post = get_object_or_404(latest_posts, pk=pid)
+    context = {'latest_post': latest_posts}
+    return render(request, 'blog/latest_blog_posts.html', context)
+
+
 def blog_test(request):
     return render(request, 'test.html')
 
