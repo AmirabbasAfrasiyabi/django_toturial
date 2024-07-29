@@ -92,7 +92,7 @@ $black			: #222;
 }
 
 body {
-  color: #fff;
+  color: #222222;
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 500;
@@ -3862,7 +3862,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 .single-post-area .social-links li a {
   color: #222;
   padding: 7px;
-  font-size: 14px;
+  font-size: 18px;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
