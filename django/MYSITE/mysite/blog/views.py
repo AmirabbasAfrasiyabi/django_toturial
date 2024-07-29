@@ -22,17 +22,16 @@ def blog_view(request, cat_name=None, author_username=None):
 
 
 def latest_blog_posts(request):
-    latest_posts = Post.objects.filter(status=1).order_by('-published_date')
-    posts = Paginator(latest_posts, 3)  # Adjust the number here to control posts per page
-    try:
-        page_number = request.GET.get('page')
-        posts = posts.get_page(page_number)
-    except PageNotAnInteger:
-        posts = posts.get_page(1)
-    except EmptyPage:
-        posts = posts.get_page(1)
+    posts = Post.objects.filter(status=1).order_by('-published_date')[:6]
+    if not posts.exists():
+        print("هیچ پستی با وضعیت قابل نمایش وجود ندارد.")
+    else:
+        print(f"تعداد پست‌ها: {posts.count()}")
+        for post in posts:
+            print(f"پست: {post.title}")
     context = {'posts': posts}
-    return render(request, 'blog/latest_blog_posts.html', context)
+    return render(request, 'website/index.html', context)
+
 
 
 def blog_single(request, pid):
@@ -42,7 +41,9 @@ def blog_single(request, pid):
     return render(request, 'blog/blog-single.html', context)
 
 def blog_test(request):
-    return render(request, 'test.html')
+    posts = Post.objects.filter(status=1)
+    context = {'posts': posts}
+    return render(request, 'website/test.html', context)
 
 def blog_category(request, cat_name):
     posts = Post.objects.filter(status=1)
