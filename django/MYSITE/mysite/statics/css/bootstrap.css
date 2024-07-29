@@ -195,7 +195,7 @@ sup {
 }
 
 a {
-  color: #007bff;
+  color: #fff;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
@@ -632,6 +632,34 @@ pre code {
   flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px;
+  align-items: stretch;
+  justify-content: space-between; 
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 20px 0;
+  width: 100%;
+}
+
+.header .column {
+  flex: 1;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* اضافه کردن مرکز تراز عمودی */
+  max-width: 33%;
+}
+
+.header .about-agency {
+  text-align: left;
+}
+
+.header .my-company,
+.header .important-link {
+  text-align: center;
 }
 
 .no-gutters {
