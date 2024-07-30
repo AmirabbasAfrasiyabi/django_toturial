@@ -22,17 +22,9 @@ def blog_view(request, cat_name=None, author_username=None):
 
 
 def latest_blog_posts(request):
-    posts = Post.objects.filter(status=1).order_by('-published_date')[:6]
-    if not posts.exists():
-        print("هیچ پستی با وضعیت قابل نمایش وجود ندارد.")
-    else:
-        print(f"تعداد پست‌ها: {posts.count()}")
-        for post in posts:
-            print(f"پست: {post.title}")
+    posts = Post.objects.filter(status=1).order_by('-published_date')
     context = {'posts': posts}
     return render(request, 'website/index.html', context)
-
-
 
 def blog_single(request, pid):
     posts = Post.objects.filter(status=1)
