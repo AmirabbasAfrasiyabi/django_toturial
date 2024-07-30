@@ -29,7 +29,15 @@ def latest_blog_posts(request):
 def blog_single(request, pid):
     posts = Post.objects.filter(status=1)
     post = get_object_or_404(posts, pk=pid)
-    context = {'post': post}
+
+    previous_post = posts.filter(pk__lt=post.pk).order_by('-pk').first()
+    next_post = posts.filter(pk__gt=post.pk).order_by('pk').first()
+
+    context = {
+        'post': post,
+        'previous_post': previous_post,
+        'next_post': next_post
+    }
     return render(request, 'blog/blog-single.html', context)
 
 def blog_test(request):

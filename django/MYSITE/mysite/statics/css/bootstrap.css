@@ -104,6 +104,27 @@ body {
   background-color: #fff;
 }
 
+/* Add this CSS to your stylesheet */
+
+.navigation-area .nav-left .thumb img,
+.navigation-area .nav-right .thumb img {
+  width: 100px; /* or any desired width */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.navigation-area .details {
+  max-width: 150px; /* Adjust based on your design */
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navigation-area .details p,
+.navigation-area .details a {
+  margin: 0;
+}
+
+
 [tabindex="-1"]:focus {
   outline: 0 !important;
 }
