@@ -14,6 +14,7 @@ class Post(models.Model):
     content = models.TextField()
     #tags
     category  = models.ManyToManyField(category, blank=True,)
+    comment =  models.IntegerField(default=0)
     counted_views = models.IntegerField(default=0)
     status = models.BooleanField( default= False)
     published_date = models.DateTimeField(null= True)

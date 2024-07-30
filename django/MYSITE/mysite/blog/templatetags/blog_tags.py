@@ -3,13 +3,10 @@ from blog.models import Post
 from blog.models import category
 register = template.Library()
 
-
 @register.simple_tag(name ='totalPost')
-
 def function():
     posts = Post.objects.filter(status=1).count()
     return posts
-
 
 @register.filter
 def snippet(value,arg=20):
@@ -22,7 +19,7 @@ def latestposts():
 
 @register.inclusion_tag('blog/latest_blog_posts.html')
 def latest_posts():
-    posts = Post.objects.filter(status=1).order_by('-published_date')
+    posts = Post.objects.filter(status=1).order_by('published_date')
     
     return {'posts': posts}
 
