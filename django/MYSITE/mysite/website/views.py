@@ -14,11 +14,11 @@ def contact_view(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.add_message(request,messages.SUCCESS , 'your ticket submited seccessfuly')
+            messages.add_message(request, messages.SUCCESS, 'your ticket submitted successfully')
         else:
-            messages.add_message(request,messages.ERROR , 'your ticket  didnt submited seccessfuly')
-    form = ContactForm()     
-    return render(request,'website/contact.html',{'form': form})
+            messages.add_message(request, messages.ERROR, 'your ticket didn\'t submit successfully')
+    form = ContactForm()
+    return render(request, 'website/contact.html', {'form': form})
 
 def newsletter_view(request):
     if request.method == 'POST':

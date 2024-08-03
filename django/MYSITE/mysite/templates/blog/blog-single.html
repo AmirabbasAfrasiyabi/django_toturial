@@ -212,6 +212,7 @@
           <h4>Leave a Comment</h4>
           <form>
             <div class="form-group form-inline">
+              {% csrf_token %}
               <div class="form-group col-lg-6 col-md-12 name">
                 <input
                   type="text"
