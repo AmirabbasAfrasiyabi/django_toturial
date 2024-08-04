@@ -8,16 +8,16 @@ class category(models.Model):
     def __str__(self) :
         return self.name
 class Post(models.Model):
-    image = models.ImageField(upload_to='blog/',default='blog/default.jpg')
-    author = models.ForeignKey(User, related_name = "author" , on_delete=models.SET_NULL, null=True)
+    image = models.ImageField(upload_to='blog/', default='blog/default.jpg')
+    author = models.ForeignKey(User, related_name="author", on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=100)
     content = models.TextField()
-    category  = models.ManyToManyField(category, blank=True,)
-    comment =  models.IntegerField(default=0)
+    category = models.ManyToManyField(category, blank=True)
+    # comment_count = models.IntegerField(default=0)
     counted_views = models.IntegerField(default=0)
-    status = models.BooleanField( default= False)
-    published_date = models.DateTimeField(null= True)
-    created_date = models.DateTimeField(auto_now_add=True ) 
+    status = models.BooleanField(default=False)
+    published_date = models.DateTimeField(null=True)
+    created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
     class Meta:
