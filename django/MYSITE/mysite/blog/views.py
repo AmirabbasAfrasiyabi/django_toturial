@@ -4,12 +4,15 @@ from blog.models import Post
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from blog.forms import CommentForm
 
-def blog_view(request, cat_name=None, author_username=None):
+def blog_view(request, cat_name=None, author_username=None , tag_name = None,):
     posts = Post.objects.filter(status=1)
     if cat_name:
         posts = posts.filter(category__name=cat_name)
     if author_username:
         posts = posts.filter(author__username=author_username)
+    if tag_name:
+        posts = posts.filter(tags__name__in=[tag_name])
+        # posts = posts.filter(tag__name=tag_name)
     posts = Paginator(posts, 3)
     try:
         page_number = request.GET.get('page')

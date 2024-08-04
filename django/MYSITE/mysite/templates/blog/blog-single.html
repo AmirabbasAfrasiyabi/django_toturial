@@ -198,6 +198,8 @@
           {% include "blog/blog-writter.html" %}
           {% latestposts %}
           {% postcategories %}
+          <!-- Include the tags template -->
+          {% include "blog/blog-tags.html" with tags=post.tags.all %}
           {% include "blog/blog-ads.html" %}
         </div>
       </div>
