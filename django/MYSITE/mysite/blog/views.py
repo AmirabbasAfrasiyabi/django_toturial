@@ -1,7 +1,8 @@
 # views.py
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404 , redirect
 from blog.models import Post
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from blog.forms import CommentForm
 
 def blog_view(request, cat_name=None, author_username=None):
     posts = Post.objects.filter(status=1)
@@ -27,14 +28,30 @@ def latest_blog_posts(request):
     return render(request, 'website/index.html', context)
 
 def blog_single(request, pid):
-    posts = Post.objects.filter(status=1)
-    post = get_object_or_404(posts, pk=pid)
+    post = get_object_or_404(Post, pk=pid, status=1)
+    comments = post.comments.filter(active=True)
+    new_comment = None
 
-    previous_post = posts.filter(pk__lt=post.pk).order_by('-pk').first()
-    next_post = posts.filter(pk__gt=post.pk).order_by('pk').first()
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.post = post
+            new_comment.save()
+            post.comment_count = post.comments.filter(active=True).count()
+            post.save()
+            return redirect(post.get_absolute_url())
+    else:
+        comment_form = CommentForm()
+
+    previous_post = Post.objects.filter(pk__lt=post.pk, status=1).order_by('-pk').first()
+    next_post = Post.objects.filter(pk__gt=post.pk, status=1).order_by('pk').first()
 
     context = {
         'post': post,
+        'comments': comments,
+        'new_comment': new_comment,
+        'comment_form': comment_form,
         'previous_post': previous_post,
         'next_post': next_post
     }

@@ -1,17 +1,26 @@
 from django.contrib import admin
-from blog.models import Post , category
+from blog.models import Post , category ,Comment
 
 # Register your models here.
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'post', 'created_on', 'active')
+    list_filter = ('active', 'created_on')
+    search_fields = ('name', 'email', 'body')
+    actions = ['approve_comments']
+
+    def approve_comments(self, request, queryset):
+        queryset.update(active=True)
 class PostAdmin(admin.ModelAdmin):
     date_hierarchy = "created_date"
     empty_value_display = '-empty-'
-    # fields = ("title","content","published_date", "status", "created_date" , "updated_date" )
     list_display = ("title","author","published_date", "status", "created_date" , "updated_date" )
     list_filter = ("status",'author')
-    # ordering = ['-created_date']
     search_fields = ['title','content','author']
+
 admin.site.register(category)
 admin.site.register(Post,PostAdmin)
+admin.site.register(Comment, CommentAdmin)
 
 
 

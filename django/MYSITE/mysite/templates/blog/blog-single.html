@@ -121,106 +121,42 @@
           </div>
         </div>
         <div class="comments-area">
-          <h4>{{post.comment}}Comments</h4>
+          <h4>{{ comments.count }} Comments</h4>
+          {% for comment in comments %}
           <div class="comment-list">
             <div class="single-comment justify-content-between d-flex">
               <div class="user justify-content-between d-flex">
                 <div class="thumb">
-                  <img src="{% static 'img/blog/c1.jpg' %}" alt="" />
                 </div>
                 <div class="desc">
-                  <h5><a href="#">Emilly Blunt</a></h5>
-                  <p class="date">December 4, 2017 at 3:12 pm</p>
-                  <p class="comment">Never say goodbye till the end comes!</p>
+                  <h5><a href="#">{{ comment.name }}</a></h5>
+                  <p class="date">{{ comment.created_on|date:"F d, Y" }} at {{ comment.created_on|date:"H:i" }}</p>
+                  <p class="comment">{{ comment.body }}</p>
                 </div>
               </div>
               <div class="reply-btn">
-                <a href="" class="btn-reply text-uppercase">reply</a>
+                <a href="#" class="btn-reply text-uppercase">reply</a>
               </div>
             </div>
           </div>
-          <div class="comment-list left-padding">
-            <div class="single-comment justify-content-between d-flex">
-              <div class="user justify-content-between d-flex">
-                <div class="thumb">
-                  <img src="{% static 'img/blog/c2.jpg' %}" alt="" />
-                </div>
-                <div class="desc">
-                  <h5><a href="#">Elsie Cunningham</a></h5>
-                  <p class="date">December 4, 2017 at 3:12 pm</p>
-                  <p class="comment">Never say goodbye till the end comes!</p>
-                </div>
-              </div>
-              <div class="reply-btn">
-                <a href="" class="btn-reply text-uppercase">reply</a>
-              </div>
-            </div>
-          </div>
-          <div class="comment-list left-padding">
-            <div class="single-comment justify-content-between d-flex">
-              <div class="user justify-content-between d-flex">
-                <div class="thumb">
-                  <img src="{% static 'img/blog/c3.jpg' %}" alt="" />
-                </div>
-                <div class="desc">
-                  <h5><a href="#">Annie Stephens</a></h5>
-                  <p class="date">December 4, 2017 at 3:12 pm</p>
-                  <p class="comment">Never say goodbye till the end comes!</p>
-                </div>
-              </div>
-              <div class="reply-btn">
-                <a href="" class="btn-reply text-uppercase">reply</a>
-              </div>
-            </div>
-          </div>
-          <div class="comment-list">
-            <div class="single-comment justify-content-between d-flex">
-              <div class="user justify-content-between d-flex">
-                <div class="thumb">
-                  <img src="{% static 'img/blog/c4.jpg' %}" alt="" />
-                </div>
-                <div class="desc">
-                  <h5><a href="#">Maria Luna</a></h5>
-                  <p class="date">December 4, 2017 at 3:12 pm</p>
-                  <p class="comment">Never say goodbye till the end comes!</p>
-                </div>
-              </div>
-              <div class="reply-btn">
-                <a href="" class="btn-reply text-uppercase">reply</a>
-              </div>
-            </div>
-          </div>
-          <div class="comment-list">
-            <div class="single-comment justify-content-between d-flex">
-              <div class="user justify-content-between d-flex">
-                <div class="thumb">
-                  <img src="{% static 'img/blog/c5.jpg' %}" alt="" />
-                </div>
-                <div class="desc">
-                  <h5><a href="#">Ina Hayes</a></h5>
-                  <p class="date">December 4, 2017 at 3:12 pm</p>
-                  <p class="comment">Never say goodbye till the end comes!</p>
-                </div>
-              </div>
-              <div class="reply-btn">
-                <a href="" class="btn-reply text-uppercase">reply</a>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
         <div class="comment-form">
           <h4>Leave a Comment</h4>
-          <form>
+          <form method="post" class="form-contact comment_form">
+            {% csrf_token %}
             <div class="form-group form-inline">
-              {% csrf_token %}
               <div class="form-group col-lg-6 col-md-12 name">
                 <input
                   type="text"
                   class="form-control"
                   id="name"
+                  name="name"
                   placeholder="Enter Name"
                   onfocus="this.placeholder = ''"
                   onblur="this.placeholder = 'Enter Name'"
+                  value="{{ comment_form.name.value }}"
+                  required
                 />
               </div>
               <div class="form-group col-lg-6 col-md-12 email">
@@ -228,9 +164,12 @@
                   type="email"
                   class="form-control"
                   id="email"
+                  name="email"
                   placeholder="Enter email address"
                   onfocus="this.placeholder = ''"
                   onblur="this.placeholder = 'Enter email address'"
+                  value="{{ comment_form.email.value }}"
+                  required
                 />
               </div>
             </div>
@@ -239,23 +178,26 @@
                 type="text"
                 class="form-control"
                 id="subject"
+                name="subject"
                 placeholder="Subject"
                 onfocus="this.placeholder = ''"
                 onblur="this.placeholder = 'Subject'"
+                value="{{ comment_form.subject.value }}"
+                required
               />
             </div>
             <div class="form-group">
               <textarea
                 class="form-control mb-10"
                 rows="5"
-                name="message"
+                id="body"
+                name="body"
                 placeholder="Message"
                 onfocus="this.placeholder = ''"
                 onblur="this.placeholder = 'Message'"
-                required=""
-              ></textarea>
+                required>{{ comment_form.body.value }}</textarea>
             </div>
-            <a href="#" class="primary-btn text-uppercase">Post Comment</a>
+            <button type="submit" class="primary-btn text-uppercase">Post Comment</button>
           </form>
         </div>
       </div>
