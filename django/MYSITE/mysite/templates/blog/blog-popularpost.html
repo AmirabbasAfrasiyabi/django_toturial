@@ -14,11 +14,10 @@
         </div>
         <div class="details">
           <a href="{% url 'blog:single' pid=post.id %}"
-            ><h6>{{post.title}}</h6></a
-          >
+            ><h6>{{post.title}}</h6></a>
           {% comment %} <p>{{post.published_date|date:"d/M/Y"}}</p> {% endcomment %}
-          {% comment %} <p>{{1000 | intcomma}}</p>
-          <p>{{10000 | intword}}</p>  {% endcomment %}
+           {% comment %} <p>{{1000 | intcomma}}</p> {% endcomment %}
+          {% comment %} <p>{{10000000000 | intword}}</p>   {% endcomment %}
           <p>{{post.published_date | naturaltime}}</p>
 
         </div>

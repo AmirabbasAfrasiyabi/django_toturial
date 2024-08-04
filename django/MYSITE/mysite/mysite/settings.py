@@ -28,8 +28,12 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
+#site freamwork
 SITE_ID = 2
+
+#robots
+ROBOTS_USE_HOST = True
+ROBOTS_USE_SITEMAP = True
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -41,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'robots',
     'django_extensions',
     'website',
     'blog',
