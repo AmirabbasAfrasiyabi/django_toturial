@@ -48,10 +48,14 @@ INSTALLED_APPS = [
     'robots',
     "debug_toolbar",
     "taggit",
+    'django_summernote',
     'django_extensions',
     'website',
     'blog',
 ]
+
+#summernote confige
+SUMMERNOTE_THEME = 'bs4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -148,7 +152,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 INTERNAL_IPS = [
-    # ...
     "127.0.0.1",
-    # ...
 ]
