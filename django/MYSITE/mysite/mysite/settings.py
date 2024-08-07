@@ -36,6 +36,7 @@ ROBOTS_USE_HOST = True
 ROBOTS_USE_SITEMAP = True
 
 INSTALLED_APPS = [
+    'multi_captcha_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -82,6 +83,10 @@ SUMMERNOTE_CONFIG = {
             ['view', ['fullscreen', 'codeview', 'help']],
         ],
     }
+}
+
+MULTI_CAPTCHA_ADMIN = {
+    'engine': 'simple-captcha',
 }
 
 MIDDLEWARE = [
