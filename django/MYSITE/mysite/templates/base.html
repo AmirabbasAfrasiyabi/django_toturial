@@ -44,18 +44,12 @@
           <div class="row align-items-center">
             <div class="col-lg-6 col-sm-6 col-6 header-top-left">
               <ul>
-                <li>
-                  <a href="https://github.com/AmirabbasAfrasiyabi"><i class="fa fa-github"></i></a>
-                </li>
-                <li>
-                  <a href="https://www.linkedin.com/in/amirabbas-afrasiyabi-a6a230259/"><i class="fa fa-linkedin"></i></a>
-                </li>
-                <li>
-                  <a href="https://www.instagram.com/amirabbas.afrasiabi/"><i class="fa fa-instagram"></i></a>
-                </li>
-                <li>
-                  <a href="https://web.telegram.org/k/#@amir_afrasiyabi"><i class="fa fa-telegram"></i></a>
-                </li>
+                {% if request.user.is_authenticated %}
+                <li><a href="#">Welcome {{request.user.username}}</a></li>
+                {%  else %}
+                <li><a href="{% url 'accounts:login' %}">Login</a></li>
+                <li><a href="#">Signup</a></li>
+                {% endif %}
               </ul>
             </div>
           </div>
