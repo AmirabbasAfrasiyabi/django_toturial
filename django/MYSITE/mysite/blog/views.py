@@ -30,19 +30,16 @@ def blog_view(request, cat_name=None, author_username=None , tag_name = None,):
     else:
         return render(request, 'accounts/login.html')
 
-def latest_blog_posts(request):
-    posts = Post.objects.filter(status=1).order_by('-published_date')
-    context = {'posts': posts}
-    return render(request, 'website/index.html', context)
 
 def blog_single(request, pid):
     if request.user.is_authenticated:
-        post = get_object_or_404(Post, pk=pid, status=1)
+        post = get_object_or_404(Post, pk=pid, status=True)
         
-        # افزایش شمارش بازدید
+        # Increase the view count
         post.counted_views += 1
         post.save()
 
+        # Fetch only active comments
         comments = post.comments.filter(active=True)
         new_comment = None
 
@@ -51,15 +48,14 @@ def blog_single(request, pid):
             if comment_form.is_valid():
                 new_comment = comment_form.save(commit=False)
                 new_comment.post = post
+                new_comment.active = True  # Mark the comment as active
                 new_comment.save()
-                post.comment_count = post.comments.filter(active=True).count()
-                post.save()
                 return redirect(post.get_absolute_url())
         else:
             comment_form = CommentForm()
 
-        previous_post = Post.objects.filter(pk__lt=post.pk, status=1).order_by('-pk').first()
-        next_post = Post.objects.filter(pk__gt=post.pk, status=1).order_by('pk').first()
+        previous_post = Post.objects.filter(pk__lt=post.pk, status=True).order_by('-pk').first()
+        next_post = Post.objects.filter(pk__gt=post.pk, status=True).order_by('pk').first()
 
         context = {
             'post': post,
@@ -72,7 +68,13 @@ def blog_single(request, pid):
         return render(request, 'blog/blog-single.html', context)
     else:
         return render(request, 'accounts/login.html')
-    
+
+def latest_blog_posts(request):
+    posts = Post.objects.filter(status=1).order_by('-published_date')
+    context = {'posts': posts}
+    return render(request, 'website/index.html', context)
+
+
 def blog_test(request):
     posts = Post.objects.filter(status=1)
     context = {'posts': posts}

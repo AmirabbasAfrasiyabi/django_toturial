@@ -14,3 +14,7 @@ urlpatterns = [
     path('test/', blog_test, name='test'),
     path("rss/feed/", LatestEntriesFeed()),
 ]
+
+
+
+

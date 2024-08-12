@@ -43,9 +43,9 @@
               
             </ul>
             <div class="user-details row">
-              <p class="user-name col-lg-12 col-md-12 col-6">
+              {% comment %} <p class="user-name col-lg-12 col-md-12 col-6">
                 <a href="#">{{post.author.get_full_name}}</a> <span class="lnr lnr-user"></span>
-              </p>
+              </p> {% endcomment %}
               <p class="date col-lg-12 col-md-12 col-6">
                 <a href="#">{{post.published_date|date:"d/M/Y"}}</a>
                 <span class="lnr lnr-calendar-full"></span>
@@ -120,77 +120,54 @@
             {% endif %}
           </div>
         </div>
+        <!-- comments-area -->
         <div class="comments-area">
-          <h4>{{ comments.count }} Comments</h4>
-          {% for comment in comments %}
-          <div class="comment-list">
-            <div class="single-comment justify-content-between d-flex">
-              <div class="user justify-content-between d-flex">
-                <div class="thumb">
-                </div>
+    <h4>{{ comments.count }} Comments</h4>
+    {% for comment in comments %}
+    <div class="comment-list">
+        <div class="single-comment justify-content-between d-flex">
+            <div class="user justify-content-between d-flex">
+                <div class="thumb"></div>
                 <div class="desc">
-                  <h5><a href="#">{{ comment.name }}</a></h5>
-                  <p class="date">{{ comment.created_on|date:"F d, Y" }} at {{ comment.created_on|date:"H:i" }}</p>
-                  <p class="comment">{{ comment.body }}</p>
+                    <h5><a href="#">{{ comment.name }}</a></h5>
+                    <p class="date">{{ comment.created_on|date:"F d, Y" }} at {{ comment.created_on|date:"H:i" }}</p>
+                    <p class="comment">{{ comment.body }}</p>
                 </div>
-              </div>
-              <div class="reply-btn">
-                <a href="#" class="btn-reply text-uppercase">reply</a>
-              </div>
             </div>
-          </div>
-          {% endfor %}
+            <div class="reply-btn">
+                <a href="#" class="btn-reply text-uppercase">Reply</a>
+            </div>
         </div>
-        <div class="comment-form">
-          <h4>Leave a Comment</h4>
-          <form method="post" class="form-contact comment_form">
-            {% csrf_token %}
-            <div class="form-group form-inline">
-              <div class="form-group col-lg-6 col-md-12 name">
-                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'" value="{{ comment_form.name.value }}" required
-                />
-              </div>
-              <div class="form-group col-lg-6 col-md-12 email">
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  name="email"
-                  placeholder="Enter email address"
-                  onfocus="this.placeholder = ''"
-                  onblur="this.placeholder = 'Enter email address'"
-                  value="{{ comment_form.email.value }}"
-                  required
-                />
-              </div>
-            </div>
-            <div class="form-group">
-              <input
-                type="text"
-                class="form-control"
-                id="subject"
-                name="subject"
-                placeholder="Subject"
-                onfocus="this.placeholder = ''"
-                onblur="this.placeholder = 'Subject'"
-                value="{{ comment_form.subject.value }}"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <textarea
-                class="form-control mb-10"
-                rows="5"
-                id="body"
-                name="body"
-                placeholder="Message"
-                onfocus="this.placeholder = ''"
-                onblur="this.placeholder = 'Message'"
-                required>{{ comment_form.body.value }}</textarea>
-            </div>
-            <button type="submit" class="primary-btn text-uppercase">Post Comment</button>
-          </form>
+    </div>
+    {% empty %}
+    <p>No comments yet.</p>
+    {% endfor %}
+</div>
+
+<div class="comment-form">
+    <h4>Leave a Comment</h4>
+    <form method="post" action="{% url 'blog:single' pid=post.id %}">
+        {% csrf_token %}
+        <input type="hidden" name="post" value="{{ post.id }}">
+        {% if request.user.is_authenticated %}
+            <input type="hidden" name="name" value="{{ request.user.first_name }}">
+            <input type="hidden" name="email" value="{{ request.user.email }}">
+        {% else %}
+        <div class="form-group form-inline">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" value="{{ comment_form.name.value }}" required>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="{{ comment_form.email.value }}" required>
         </div>
+        {% endif %}
+        <div class="form-group">
+            <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" value="{{ comment_form.subject.value }}" required>
+        </div>
+        <div class="form-group">
+            <textarea class="form-control mb-10" rows="5" id="body" name="body" placeholder="Message" required>{{ comment_form.body.value }}</textarea>
+        </div>
+        <button type="submit" class="primary-btn text-uppercase">Post Comment</button>
+    </form>
+</div>
+
       </div>
       <div class="col-lg-4 sidebar-widgets">
         <div class="widget-wrap">
