@@ -31,6 +31,10 @@ ALLOWED_HOSTS = []
 #site freamwork
 SITE_ID = 2
 
+CSRF_COOKIE_SECURE = False  # برای محیط توسعه
+CSRF_USE_SESSIONS = True
+
+
 #robots
 ROBOTS_USE_HOST = True
 ROBOTS_USE_SITEMAP = True
